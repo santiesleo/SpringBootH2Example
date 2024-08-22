@@ -9,4 +9,10 @@ import java.util.List;
 
 public interface IUserService {
     public List<User> getUsers();
+
+    User saveUser(User user);
+
+    User updateUser(User user);
+
+    void deleteUser(int id);
 }

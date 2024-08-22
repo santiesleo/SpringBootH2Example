@@ -2,6 +2,7 @@ package com.example.springbooth2example.model;
 
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,18 +16,11 @@ public class Role implements Serializable {
     private int id;
     private String name;
     private String description;
+    @Getter
     @OneToMany(mappedBy = "role")
     private List<Permission> permissions;
 
     @OneToMany(mappedBy = "role")
     private List<UserRole> users;
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
 
 }

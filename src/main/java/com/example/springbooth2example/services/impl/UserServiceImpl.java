@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 //el user service depende del repositorio
@@ -22,6 +23,33 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<User> getUsers() {
         return (List<User>) userDao.findAll();
+    }
+
+    @Override
+    public User saveUser(User user) {
+        return userDao.save(user);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        // Verificar que el usuario existe antes de actualizar
+        Optional<User> existingUser = userDao.findById(user.getId());
+        if (existingUser.isPresent()) {
+            return userDao.save(user);
+        } else {
+            // Manejar el caso en el que el usuario no exista
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        Optional<User> existingUser = userDao.findById(id);
+        if (existingUser.isPresent()) {
+            userDao.delete(existingUser.get());
+        } else {
+            //
+        }
     }
 
 

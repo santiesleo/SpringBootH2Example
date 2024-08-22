@@ -1,6 +1,7 @@
 package com.example.springbooth2example.model;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -11,6 +12,7 @@ public class UserRole implements Serializable {
     @EmbeddedId
      private UserRolePK userRolePK;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
@@ -20,8 +22,4 @@ public class UserRole implements Serializable {
     private Role role;
 
 
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

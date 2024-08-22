@@ -1,6 +1,7 @@
 package com.example.springbooth2example.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
