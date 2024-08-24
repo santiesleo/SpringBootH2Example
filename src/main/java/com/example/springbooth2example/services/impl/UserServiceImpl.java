@@ -3,6 +3,7 @@ package com.example.springbooth2example.services.impl;
 import com.example.springbooth2example.model.User;
 import com.example.springbooth2example.services.interfaces.IUserDao;
 import com.example.springbooth2example.services.interfaces.IUserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,17 @@ public class UserServiceImpl implements IUserService {
     // que lo proporciona la interfaz CrudRepository
     @Autowired
     private IUserDao userDao;
+
+    @PostConstruct
+    public void init() {
+        User user = new User();
+        user.setUsername("admin2");
+        user.setPassword("admin");
+        user.setEmail("admin@admin.com");
+        user.setName("Usuario");
+        user.setLastName("Inicial");
+        userDao.save(user);
+    }
 
     @Override
     public List<User> getUsers() {
